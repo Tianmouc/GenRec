@@ -1,0 +1,46 @@
+{
+  "_class_name": "UNet2DModelBTCHW",
+  "_diffusers_version": "0.30.3",
+  "_name_or_path": "/home/suraj_huggingface_co/.cache/huggingface/diffusers/models--duongna--ldm-super-resolution/snapshots/e2e5fa6236896eb4dcc1d117dde23114542dde7d/unet",
+  "act_fn": "silu",
+  "add_attention": true,
+  "attention_head_dim": 32,
+  "attn_norm_num_groups": null,
+  "block_out_channels": [
+    160,
+    320,
+    320,
+    640
+  ],
+  "center_input_sample": false,
+  "class_embed_type": null,
+  "down_block_types": [
+    "DownBlock2D",
+    "AttnDownBlock2D",
+    "AttnDownBlock2D",
+    "AttnDownBlock2D"
+  ],
+  "downsample_padding": 1,
+  "downsample_type": "conv",
+  "dropout": 0.0,
+  "flip_sin_to_cos": true,
+  "freq_shift": 0,
+  "in_channels": 13,
+  "layers_per_block": 4,
+  "mid_block_scale_factor": 1,
+  "norm_eps": 1e-05,
+  "norm_num_groups": 32,
+  "num_class_embeds": null,
+  "num_train_timesteps": null,
+  "out_channels": 3,
+  "resnet_time_scale_shift": "default",
+  "sample_size": 64,
+  "time_embedding_type": "positional",
+  "up_block_types": [
+    "AttnUpBlock2D",
+    "UpBlock2D",
+    "UpBlock2D",
+    "UpBlock2D"
+  ],
+  "upsample_type": "conv"
+}

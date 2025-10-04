@@ -1,0 +1,16 @@
+{
+  "_class_name": "TMPixelInterpolationSRPipeline",
+  "_diffusers_version": "0.8.0.dev0",
+  "scheduler": [
+    "diffusers",
+    "DDIMScheduler"
+  ],
+  "unet": [
+    "CBRDM.unet2d_btchw",
+    "UNet2DModelBTCHW"
+  ],
+  "sr_unet": [
+    "diffusers",
+    "UNet2DModel"
+  ]
+}

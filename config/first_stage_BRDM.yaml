@@ -1,0 +1,125 @@
+logging:
+  filename: logging.log
+  format: ' %(asctime)s - %(levelname)s -%(filename)s - %(funcName)s >> %(message)s'
+  console_level: 20
+  file_level: 10
+
+wandb:
+  project: TianmoucRec
+
+dataset:
+  train:
+    name: mixed
+    prob_ls:
+    - 0.2
+    - 0.75
+    - 0.05
+    dataset_list:
+    - name: TianmoucMetadataInterpolationDatasetHdf5BTCHW
+      disp_name: TM_X4K1000FPS_train
+      dir: /your_dataset_root/Tianmouc_dataset_X4K1000_new1_hdf5/train
+      resize_to_hw:
+      - 48
+      - 96
+      rgb_key: F
+      mode: train
+      hdf5_mode: single
+      select_divs: [0,2,4,6,8,10,12,14,16,18,20,22,24]
+    - name: TianmoucMetadataInterpolationDatasetHdf5BTCHW
+      disp_name: TM_SportsSloMo_train
+      dir: /your_dataset_root/Tianmouc_dataset_SportsSloMo1_denoise_h5py/train
+      resize_to_hw:
+      - 48
+      - 96
+      rgb_key: F
+      mode: train
+      hdf5_mode: multi
+      select_divs: [0,2,4,6,8,10,12,14,16,18,20,22,24]
+    - name: TianmoucMetadataInterpolationDatasetHdf5BTCHW
+      disp_name: TM_GoPro_train
+      dir: /your_dataset_root/Tianmouc_dataset_GoPro1_denoise_h5py/train
+      resize_to_hw:
+      - 48
+      - 96
+      rgb_key: F
+      mode: train
+      hdf5_mode: multi
+      select_divs: [0,2,4,6,8,10,12,14,16,18,20,22,24]
+  val:
+  - name: TianmoucMetadataInterpolationDatasetHdf5BTCHW
+    disp_name: TM_SportsSloMo_val
+    dir: /your_dataset_root/Tianmouc_dataset_SportsSloMo1_denoise_h5py/valid
+    resize_to_hw:
+    - 48
+    - 96
+    rgb_key: F
+    mode: val
+    val_pack: 0
+    hdf5_mode: multi
+    select_divs: [0,2,4,6,8,10,12,14,16,18,20,22,24]
+
+model:
+  name: TianmoucRec_BRDM
+  pretrained_path: TianmoucRec_BRDM
+
+pipeline:
+  name: TianmoucSingleStageReconstructionPipeline
+  kwargs:
+    time_embedding: false
+    without_td: false
+    without_sd: false
+
+dataloader:
+  num_workers: 4
+  effective_batch_size: 32
+  max_train_batch_size: 1
+  seed: 2024
+
+trainer:
+  name: TMPixelRec_Trainer
+  training_noise_scheduler:
+    pretrained_path: TianmoucRec_BRDM
+  init_seed: 2024
+  save_period: 500
+  backup_period: 5000
+  validation_period: 5000
+  visualization_period: 500000000
+  kwargs:
+    BTCHW: true
+    real_unet_in_channels: 13
+
+max_epoch: 1000
+max_iter: 200000
+
+optimizer:
+  name: Adam
+
+loss:
+  name: mse_loss
+  kwargs:
+    reduction: mean
+
+lr: 1.0e-05
+lr_scheduler:
+  name: IterExponential
+  kwargs:
+    total_iter: 250000
+    final_ratio: 0.01
+    warmup_steps: 100
+
+validation:
+  denoising_steps: 200
+  processing_res: 0
+  match_input_res: false
+  resample_method: bilinear
+  main_val_metric: Lpips
+  main_val_metric_goal: minimize
+  init_seed: 2024
+
+eval:
+  alignment: least_square
+  align_max_res: null
+  eval_metrics:
+  - psnr
+  - ssim
+  - Lpips

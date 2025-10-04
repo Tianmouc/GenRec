@@ -1,0 +1,17 @@
+accelerate==1.0.0
+diffusers==0.30.3
+transformers==4.45.2
+numpy==1.26.4
+xformers==0.0.21
+opencv-python==4.10.0.84
+matplotlib
+scipy
+omegaconf
+pandas
+tabulate
+h5py
+tensorboard
+wandb
+torchmetrics
+lpips
+scikit-image

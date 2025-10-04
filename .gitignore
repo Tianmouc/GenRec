@@ -1,0 +1,23 @@
+
+# ignore these folders
+/demo*/
+/temp
+/wandb
+/venv
+/cache
+/output
+**/.ipynb_checkpoints/
+.vscode/
+.idea
+
+# ignore these types
+*.pyc
+*.out
+*.log
+*.mexa64
+*.pdf
+*.tar
+*.bin
+*tar.gz
+*.zip
+*.rar
