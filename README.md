@@ -71,7 +71,7 @@ Unzip and place:
 ```bash
 python demo.py --sample_name VanGogh --device cuda:0
 python demo.py --sample_name qrcode_rotate --device cuda:0
-python demo.py --sample_name RotateDog2000r --device cuda:0
+python demo.py --sample_name dog_rotate --device cuda:0
 python demo.py --sample_name qrcode_shaking --device cuda:0
 ```
 Reconstructed videos will be saved in `./demo_output`.
