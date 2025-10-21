@@ -68,6 +68,15 @@ Unzip and place:
 ---
 
 ### 3️⃣ Run Demo (Real-Captured Data)
+
+The demo code need to decode the raw TianmoucV1 data from .tmdat file, please install tianmoucv first:
+
+```
+pip install tianmoucv
+```
+
+then run the demo through
+
 ```bash
 python demo.py --sample_name VanGogh --device cuda:0
 python demo.py --sample_name qrcode_rotate --device cuda:0
